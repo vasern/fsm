@@ -136,6 +136,15 @@ vs::fsm_writer::close_conn();
 
 ## 2.Reading data
 
+You can load data using its block position. A block position is the order of the block in the structured
+data file. Note that end of each block is its `meta data` (2 chars).
+
+For example, let's have a `fsm` instance with block size is 1024:
+- If each record size is less than 1022, 1st block_position = 0, 2nd block_position = 1, etc.
+- Or if each record size is more than 1022, 1st block_position = 0, 2nd block_position = 2, etc.
+
+In practice, each record will have different number of blocks depend on data size.
+
 ### Quick example
 
 ```c++
@@ -158,12 +167,9 @@ vs::fsm_reader::get_record(size_t block_position);
 
 #### Arguments:
 - block_position: the position (in order) of the block.
-_For example, if each records take 2 blocks => 1st block_position = 0, 2nd block_position = 2, etc_
-
 
 ### 2.3. Close connection
 ```c++
-// close
 vs::fsm_writer::close_conn();
 ```
 
