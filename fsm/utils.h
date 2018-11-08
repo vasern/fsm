@@ -1,29 +1,23 @@
+/* ===============================================================
 //
-//  vasern_utils.h
-//  Vasern
-//
-//  Created by Hieu (Jack) Nguyen on 11/10/18.
-//  Copyright © 2018 Hieu (Jack) Nguyen. All rights reserved.
-//
+//  Copyright by Ambi Studio 2018
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  (Please find "LICENSE" file attached for license details)
+//============================================================= */
 
 #ifndef vasern_utils_h
 #define vasern_utils_h
 
-#import <Foundation/Foundation.h>
-#import <string>
-#import <vector>
+// #include <string>
+// #import <vector>
 
 namespace vasern_utils {
     
-// Convert a NSArray (objective-c) to vector<string> (cpp)
-std::string NSArrayToStr(NSArray* input);
+    // Convert a NSArray (objective-c) to vector<string> (cpp)
+    // std::string NSArrayToStr(NSArray* input);
 
-// Convert a vector<string> (cpp) to NSArray (objective-c)
-NSArray* VectorStrToNSArray(std::vector<char*> *input);
-
-std::string RecordsToChars(NSArray* input, int start_pos);
-    
-int atoi( char * str );
+    // Convert char* to int
+    int atoi( char * str );
 }
 
 

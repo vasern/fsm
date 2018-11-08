@@ -1,10 +1,9 @@
+/* ===============================================================
 //
-//  fs_indexer.hpp
-//  Vasern
-//
-//  Created by Hieu (Jack) Nguyen on 5/11/18.
-//  Copyright © 2018 Hieu (Jack) Nguyen. All rights reserved.
-//
+//  Copyright by Ambi Studio 2018
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  (Please find "LICENSE" file attached for license details)
+//============================================================= */
 
 #ifndef fs_indexer_hpp
 #define fs_indexer_hpp
@@ -38,7 +37,7 @@ namespace vs {
     private:
         
         // in-memory storage
-        std::unordered_map<std::string, std::unordered_map<id, int>> imstore;
+        std::unordered_map<std::string, std::unordered_map<std::string, int>> imstore;
         
         // db writer
         vs::fsm_writer* writer;

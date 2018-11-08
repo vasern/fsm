@@ -1,10 +1,9 @@
+/* ===============================================================
 //
-//  fsm_indexer.cpp
-//  Vasern
-//
-//  Created by Hieu (Jack) Nguyen on 5/11/18.
-//  Copyright © 2018 Hieu (Jack) Nguyen. All rights reserved.
-//
+//  Copyright by Ambi Studio 2018
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  (Please find "LICENSE" file attached for license details)
+//============================================================= */
 
 #include "fsm_indexer.h"
 #include "fsm_writer.h"

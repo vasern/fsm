@@ -5,10 +5,8 @@
 //  (Please find "LICENSE" file attached for license details)
 //================================================================
 
-
 #include "utils.h"
 #include "config.h"
-
 
 namespace vs_utils {
     

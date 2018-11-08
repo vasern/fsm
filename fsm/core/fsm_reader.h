@@ -1,10 +1,9 @@
+/* ===============================================================
 //
-//  fsm_reader.h
-//  LoggerPage
-//
-//  Created by Hieu (Jack) Nguyen on 8/11/18.
-//  Copyright © 2018 Ambi Studio. All rights reserved.
-//
+//  Copyright by Ambi Studio 2018
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  (Please find "LICENSE" file attached for license details)
+//============================================================= */
 
 #ifndef fsm_reader_h
 #define fsm_reader_h
