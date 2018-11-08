@@ -6,7 +6,7 @@
 //  Copyright © 2018 Ambi Studio. All rights reserved.
 //
 
-#import "fsm_writer.h"
+#include "fsm_writer.h"
 #include <sys/stat.h>
 
 namespace vs {
