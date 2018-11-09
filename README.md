@@ -23,7 +23,7 @@ FSM is in development mode and is not production ready. A few APIs might need up
 
 ## Performance
 
-Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM on a 250GB Flash Storage. The results will give you an idea about FSM performance.
+Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM on a 250GB Flash Storage. The results will give you an idea about FSM performance. _You can find the source code at `fsmtests/example.cpp`_
 
 ### Write
 
@@ -110,7 +110,9 @@ vs::fsm_writer* writer = db->open_writer();
 
 std::string r = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 std::string buff;
-writer->write_record(&buff, r.c_str(), c.size());
+
+// return number of blocks record consumed
+int num_of_blocks = writer->write_record(&buff, r.c_str(), c.size());
 
 writer->close_conn();
 ```
@@ -125,13 +127,16 @@ vs::fsm_writer* = vs::fsm::open_writer();
 
 ### 1.2. Write data
 ```c++
-vs::fsm_writer::write_record(sdt::string* buff, const char* data, size_t data_len);
+int = vs::fsm_writer::write_record(sdt::string* buff, const char* data, size_t data_len);
 ```
 
 #### Arguments:
 - buff: an empty string, will be used as buffer to format string before write to data file
 - data: record data as literal string (__`const char*`__)
 - data_len: size of data (length of string)
+
+#### Return:
+- int: number of blocks data consume
 
 ### 1.3. Close connection
 ```c++

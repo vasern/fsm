@@ -2,7 +2,7 @@ files=fsm/core/fsm.cpp fsm/core/fsm_reader.cpp fsm/core/fsm_writer.cpp fsm/core/
 
 example:
 	rm -f main
-	g++ -std=c++11 ${files} fsmtests/example.cpp -o main
+	g++ -std=c++11 ${files} fsmtests/example.cpp -o example
 
 tests:
 	rm -f tests
