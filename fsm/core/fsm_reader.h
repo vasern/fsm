@@ -17,23 +17,23 @@ namespace vs {
     class fsm_reader : public fsm_mode {
     public:
         
-        fsm_reader(const char* path, int block_size, int block_end);
+        fsm_reader(const char* path);
         ~fsm_reader();
         
         // Get record in the from a given block position (file must be already open)
         // It will first read meta data then read all blocks of the record
         // then return the value
-        record_desc get_record(int block_pos);
+        fsm_record get_record(int block_pos);
         
         // Close and un-map db file
         void close_conn();
         
         size_t file_size();
-    private:
+    protected:
         
         struct stat file_info;
         int fd;
-        char *map;
+        char* map;
     };
     
 } // namespace vs

@@ -8,7 +8,8 @@
 #ifndef fsm_h
 #define fsm_h
 
-#include "fsm_types.h"
+#include "../config.h"
+#include "fsm_record.h"
 #include "fsm_reader.h"
 #include "fsm_writer.h"
 
@@ -18,7 +19,7 @@ namespace vs {
     public:
         
         // Initiate writer with absolute path and record block size
-        fsm(const char* path, int block_size);
+        fsm(const char* path);
         ~fsm();
         
         fsm_reader* open_reader();
@@ -30,9 +31,6 @@ namespace vs {
         const char* path;
         
         bool is_writing;
-        
-        int b_size; // Record block size
-        int r_size; // Record size (exclude meta data)
     };
 }
 

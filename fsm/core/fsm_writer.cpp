@@ -6,13 +6,14 @@
 //============================================================= */
 
 #include "fsm_writer.h"
+#include "../config.h"
 #include <sys/stat.h>
 
 namespace vs {
     
     // Constructor
-    fsm_writer::fsm_writer(const char * path, int block_size, int record_size):
-        fsm_mode(block_size, record_size)
+    fsm_writer::fsm_writer(const char * path):
+        fsm_mode(path)
     {
         if (strlen(path) != 0) {
             file.open(path, std::ios::binary | std::ios::app);
@@ -39,8 +40,8 @@ namespace vs {
         buffer->assign(data);
         
         // Calculate number of blocks needed
-        int total_blocks = (int)(data_size / b_size);
-        if (data_size % b_size != 0) {
+        int total_blocks = (int)(data_size / vs_config::BLOCK_SIZE);
+        if (data_size % vs_config::BLOCK_SIZE != 0) {
             total_blocks++;
         }
         
@@ -51,7 +52,7 @@ namespace vs {
         // Split data into blocks and write to data file
         // (with meta data in each block)
         for (int i = 0; i < total_blocks; i++) {
-            file.write(buffer->substr(i * r_size, (i + 1) * r_size).c_str(), r_size);
+            file.write(buffer->substr(i * vs_config::RECORD_SIZE, (i + 1) * vs_config::RECORD_SIZE).c_str(), vs_config::RECORD_SIZE);
             file << total_blocks_char << i;
         }
         
@@ -70,12 +71,8 @@ namespace vs {
     // Get file size
     size_t fsm_writer::file_size() {
         
-        struct stat file_info = {0};
-        int fd = 0;
-        fstat(fd, &file_info);
-        
-        size_t size = file_info.st_size;
-        
-        return size;
+        struct stat st;
+        fstat(*path, &st);
+        return st.st_size;
     }
 }

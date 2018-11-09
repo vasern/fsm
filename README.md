@@ -23,19 +23,28 @@ FSM is in development mode and is not production ready. A few APIs might need up
 
 ## Performance
 
+Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM on a 250GB Flash Storage. The results will give you an idea about FSM performance.
 
-_...TO BE UPDATED_
-<!-- 
-Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM.
-_Note: The results proved to give you an idea about FSM performance_
+### Write
 
-```
-Write: 
-```
+Measure performance of writing 10 billions records.
 
-```
-Read:
-``` -->
+| (real)  | (user) | (sys)   | writes/s      | MB/s     |
+| ------- | ------ | ------- | ------------- | -------- |
+| 28.904s | 9.001s | 13.608s | 345,972 ops/s | 354 MB/s |
+| 29.680s | 9.495s | 14.678s | 336,927 ops/s | 345 MB/s |
+| 28.065s | 9.158s | 14.005s | 356,315 ops/s | 365 MB/s |
+
+### Read
+
+Measure performance of reading 1 billions records.
+
+| (real) | (user) | (sys)  | reads/s       | MB/s     |
+| ------ | ------ | ------ | ------------- | -------- |
+| 2.293s | 2.012s | 0.275s | 436,109 ops/s | 444 MB/s |
+| 2.292s | 2.014s | 0.269s | 436,300 ops/s | 445 MB/s |
+| 2.308s | 2.035s | 0.264s | 433,275 ops/s | 442 MB/s |
+
 
 ## Installation
 
@@ -50,11 +59,7 @@ The easiest way is to download fsm, then copy and include into your project usin
 
 ```c++
 // Init fsm and get writer
-// arguments take file path, and block size
-// Note:
-//  Block size is based on the record length.
-//  It can consume more than 1 blocks if record length > block size)
-vs::fsm db("./fsm_dump.bin", 512);
+vs::fsm db("./fsm_dump.bin");
 vs::fsm_writer* writer = db.open_writer();
 
 std::string buffer;
@@ -63,6 +68,7 @@ std::string data = "Lorem Ipsum is simply dummy text of the printing and typeset
 
 // check connection is open
 if (writer->opened) {
+
     for (int i = 0; i < 10; i++) {
 
         // write record
@@ -83,18 +89,16 @@ _Note: FSM has the namespace __`vs::`__ (short for Vasern).
 ## Start a FSM Instance
 
 ```c++
-vs::fsm::fsm(const char* path, size_t block_size);
+vs::fsm::fsm(const char* path);
 ```
 
 #### Arguments
 - path: file path
-- block_size: record block size
 
 #### Example:
 ```c++
-// on some os, path must be absolute
-// block size is 1kb
-vs::fsm db("./fsm_data.bin", 1024);
+// absolute path might be required in some OS
+vs::fsm db("./fsm_data.bin");
 ```
 
 ## 1. Writing data
@@ -105,7 +109,8 @@ vs::fsm db("./fsm_data.bin", 1024);
 vs::fsm_writer* writer = db->open_writer();
 
 std::string r = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
-writer->write_record(r.c_str(), c.size());
+std::string buff;
+writer->write_record(&buff, r.c_str(), c.size());
 
 writer->close_conn();
 ```
@@ -120,10 +125,11 @@ vs::fsm_writer* = vs::fsm::open_writer();
 
 ### 1.2. Write data
 ```c++
-vs::fsm_writer::write_record(const char* data, size_t data_len);
+vs::fsm_writer::write_record(sdt::string* buff, const char* data, size_t data_len);
 ```
 
 #### Arguments:
+- buff: an empty string, will be used as buffer to format string before write to data file
 - data: record data as literal string (__`const char*`__)
 - data_len: size of data (length of string)
 

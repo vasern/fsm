@@ -8,7 +8,7 @@
 #ifndef fsm_mode_h
 #define fsm_mode_h
 
-#include "fsm_types.h"
+#include "fsm_record.h"
 #include <string>
 
 namespace vs {
@@ -18,21 +18,20 @@ namespace vs {
         
         bool opened;
         
-        fsm_mode(int block_size, int record_size) :
-            b_size(block_size),
-            r_size(record_size)
+        fsm_mode(const char* path): 
+            path(path)
         { }
         
         void close_conn();
         
         size_t file_size();
         
-        record_desc get_record(int block_pos);
-        int write_record(std::string* buffer, char* data, size_t data_size);
+        fsm_record get_record(int block_pos);
         
+        int write_record(std::string* buffer, char* data, size_t data_size);
+
     protected:
-        int b_size; // Record block size
-        int r_size; // Record size (exclude meta data)
+        const char* path;
     };
 }
 

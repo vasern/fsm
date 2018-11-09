@@ -11,7 +11,7 @@
 
 #import <unordered_map>
 
-struct ver_info: NSDictionary {
+struct ver_info {
     int id_len;
     int block_len;
 };
@@ -22,7 +22,7 @@ struct index_info {
 };
 
 template <class T1, classdef T2>
-struct doc_info: NSDictionary {
+struct doc_info {
     std::unordered_map<std::string, ver_info*> * versions;
     std::unordered_map<T1, T2> * indexes;
     bool loaded;

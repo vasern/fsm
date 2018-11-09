@@ -16,7 +16,7 @@ namespace vs {
     class fsm_writer: public fsm_mode {
     public:
         
-        fsm_writer(const char* path, int block_size, int block_end);
+        fsm_writer(const char* path);
         ~fsm_writer();
         
         // Write new record into data file (file must be already open)
