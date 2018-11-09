@@ -23,11 +23,11 @@ FSM is in development mode and is not production ready. A few APIs might need up
 
 ## Performance
 
-Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM on a 250GB Flash Storage. The results will give you an idea about FSM performance. _You can find the source code at `fsmtests/example.cpp`_
+Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM on a 250GB Flash Storage. The results will give you an idea about FSM performance. You can find the source code at `fsmtests/example.cpp`.
 
 ### Write
 
-Measure performance of writing 10 billions records.
+Measure performance of writing 10 billions records with block size is 1024 (generate a 10GB data file).
 
 | (real)  | (user) | (sys)   | writes/s      | MB/s     |
 | ------- | ------ | ------- | ------------- | -------- |
@@ -37,7 +37,7 @@ Measure performance of writing 10 billions records.
 
 ### Read
 
-Measure performance of reading 1 billions records.
+Measure performance of reading 1 billions records with block size is 1024 (~a 1GB data file).
 
 | (real) | (user) | (sys)  | reads/s       | MB/s     |
 | ------ | ------ | ------ | ------------- | -------- |
