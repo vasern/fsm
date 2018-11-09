@@ -10,4 +10,4 @@ tests:
 	# ./tests
 
 cleanup:
-	rm -f ./sample_db.bin ./main ./tests ./dump.bin
+	rm -f ./sample_db.bin ./example ./tests ./dump.bin

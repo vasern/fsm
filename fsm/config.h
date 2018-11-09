@@ -11,7 +11,7 @@
 
 namespace vs_config {
     
-    const static int BLOCK_SIZE = 1024;
+    const static int BLOCK_SIZE = 512;
     const static int META_SIZE = 2;
     const static int RECORD_SIZE = BLOCK_SIZE - META_SIZE;
     

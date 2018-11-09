@@ -8,7 +8,7 @@
 #include "../fsm/core/fsm.h"
 
 size_t repeat = 1000000;
-std::string str = "After a month in production, I recently finished un-breaking a process I rewrote from scratch for my company. Despite painstaking efforts to replicate the production environment elsewhere, we couldn't reproduce it in any environment but production. At wits' end, I finally got approval to run production data through the system on my development workstation. Lo and behold, the same symptoms manifested plain as day. I profiled the application and traced the CPU load to an XSL transformation.";
+std::string str = "After a month in production, I recently finished un-breaking a process I rewrote from scratch for my company";
 void write(vs::fsm_writer *writer)
 {
 
@@ -34,21 +34,20 @@ void write(vs::fsm_writer *writer)
 void read(vs::fsm_reader *reader)
 {
 
-    printf("Start reading...\n");
     if (reader->opened)
     {
 
         // This loop is legit in this case
         // since str data size is less than 1024 (1kb, by default)
         int i = 0;
-        std::string data;
+        char* buff;
         while (i < repeat)
         {
-            data = std::string(reader->get_record(i).c_str());
+            reader->get_record(i).c_str(buff);
             i++;
         }
-
-        printf("Read: %zu records. Last record content:\n%s\n", repeat, data.c_str());
+        printf("Read %zu records!\n", repeat);
+        printf("Last record content: %s\n", buff);
         reader->close_conn();
     }
     else

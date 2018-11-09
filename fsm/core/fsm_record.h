@@ -17,7 +17,7 @@ namespace vs {
         
         fsm_record(char* map_add, size_t begin_pos);
         
-        const char* c_str();
+        void c_str(char* buff);
         
         fsm_record next();
         

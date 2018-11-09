@@ -7,6 +7,7 @@
 
 #include "fsm_record.h"
 #include "../config.h"
+#include <iostream>
 
 namespace vs {
   
@@ -15,12 +16,12 @@ namespace vs {
         beg(begin_pos)
     { };
     
-    const char* fsm_record::c_str() {
+    void fsm_record::c_str(char* buff) {
 
         // buffer with max size = block size (except meta) * number of blocks
         int num_of_blocks = map[beg + vs_config::RECORD_SIZE] & 0xff;
         
-        char buff[vs_config::RECORD_SIZE * num_of_blocks];
+        // buff = new char[vs_config::RECORD_SIZE * num_of_blocks];
         int r = 0, b = 0; // row & block iterator
         size_t buff_pos = 0;
         size_t beg_pos = beg;
@@ -29,7 +30,7 @@ namespace vs {
             
             r = 0;
             
-            // This loop will not added the last 2 chars
+            // This loop will exclude meta chars
             while (map[beg_pos + r] != '\0') {
                 
                 buff[buff_pos++] = map[beg_pos + r];
@@ -39,9 +40,6 @@ namespace vs {
         }
         
         buff[++buff_pos] = '\0';
-        
-        return buff;
-        
     }
     
     fsm_record fsm_record::next() {

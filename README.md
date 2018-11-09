@@ -173,11 +173,14 @@ vs::fsm_reader* = vs::fsm::open_reader();
 
 ### 2.2. Read/Get data by block position
 ```c++
-vs::fsm_reader::get_record(size_t block_position);
+vs::fsm_record = vs::fsm_reader::get_record(size_t block_position);
 ```
 
 #### Arguments:
 - block_position: the position (in order) of the block.
+
+#### Return:
+- vs::fsm_record: memory mapped arbitrary byte arrays values
 
 ### 2.3. Close connection
 ```c++
@@ -185,6 +188,20 @@ vs::fsm_writer::close_conn();
 ```
 
 #### Arguments _(N/A)_
+
+## 3. vs::fsm_record
+
+Reading data will return a `vs::fsm_record` instance, contains a reference of memory-mapped file,
+and the block position. At this point, record is still in lazy mode, which only be loaded when requested
+through following methods.
+
+### 3.1 Get content
+```c++
+void vs::fsm_record::c_str(char* buff)
+```
+
+#### Arguments
+- buff: a buffer that will be used to assign record content
 
 ## Help and Feedback
 
