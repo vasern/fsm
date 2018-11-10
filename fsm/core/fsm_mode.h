@@ -10,6 +10,8 @@
 
 #include "fsm_record.h"
 #include "../config.h"
+#include <sys/stat.h>
+
 #include <string>
 
 namespace vs {
@@ -27,16 +29,21 @@ namespace vs {
         
         void close_conn();
         
-        size_t file_size();
-        
         fsm_record get_record(int block_pos);
         
         int write_record(std::string* buffer, char* data, size_t data_size);
 
     protected:
+
         const char* path;
         int b_size;
         int r_size;
+
+        size_t fsm_mode::file_size() {
+            struct stat st;
+            fstat(*path, &st);
+            return st.st_size;
+        }
     };
 }
 

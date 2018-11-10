@@ -30,8 +30,6 @@ namespace vs {
         // Close file stream (file should be already open)
         void close_conn();
         
-        size_t file_size();
-        
     private:
         
         // use for writing records

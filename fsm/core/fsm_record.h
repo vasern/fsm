@@ -32,6 +32,8 @@ namespace vs {
         int substr(char* buff, int len);
         
         int substr(char* buff, int start, int len);
+
+        char at(int position);
         
     private:
         

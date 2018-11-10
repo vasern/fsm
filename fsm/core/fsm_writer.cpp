@@ -7,7 +7,6 @@
 
 #include "fsm_writer.h"
 #include "../config.h"
-#include <sys/stat.h>
 
 namespace vs {
     
@@ -66,13 +65,5 @@ namespace vs {
             file.close();
             opened = false;
         }
-    }
-    
-    // Get file size
-    size_t fsm_writer::file_size() {
-        
-        struct stat st;
-        fstat(*path, &st);
-        return st.st_size;
     }
 }

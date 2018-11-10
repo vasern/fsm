@@ -90,4 +90,8 @@ namespace vs {
         buff[buff_pos] = '\0';
         return num_of_blocks;
     }
+
+    char fsm_record::at(int position) {
+        return map[beg + position];
+    }
 }

@@ -28,7 +28,6 @@ namespace vs {
         // Close and un-map db file
         void close_conn();
         
-        size_t file_size();
     protected:
         
         struct stat file_info;
