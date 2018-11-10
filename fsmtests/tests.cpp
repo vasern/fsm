@@ -66,8 +66,6 @@ TEST_CASE("Reader", "[fsm]")
         reader->close_conn();
         REQUIRE(reader->opened == false);
     }
-
-    printf("Test is completed, you might want to kill the Terminal.");
 }
 
 // TODO:
