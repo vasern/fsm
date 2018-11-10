@@ -17,15 +17,21 @@ namespace vs {
         
         fsm_record(char* map_add, size_t begin_pos, int block_size, int record_size);
         
-        void c_str(char* buff);
+        // Get a whole record content into buffer
+        // Return number of blocks record consumed
+        int c_str(char* buff);
         
+        // Get next record
         fsm_record next();
         
+        // Get previous record
         fsm_record prev();
         
-        const char* substr(int len);
+        // Get a part of record content
+        // counting from 0
+        int substr(char* buff, int len);
         
-        const char* substr(int start, int len);
+        int substr(char* buff, int start, int len);
         
     private:
         

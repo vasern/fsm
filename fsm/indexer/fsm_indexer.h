@@ -10,7 +10,7 @@
 
 #include <unordered_map>
 #include <string>
-#include "fsm_writer.h"
+#include "../fsm.h"
 
 namespace vs {
     

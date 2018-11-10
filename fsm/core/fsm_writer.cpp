@@ -40,8 +40,8 @@ namespace vs {
         buffer->assign(data);
         
         // Calculate number of blocks needed
-        int total_blocks = (int)(data_size / b_size);
-        if (data_size % b_size != 0) {
+        int total_blocks = (int)(data_size / r_size);
+        if (data_size % r_size != 0) {
             total_blocks++;
         }
         
@@ -53,7 +53,7 @@ namespace vs {
         // (with meta data in each block)
         for (int i = 0; i < total_blocks; i++) {
             file.write(buffer->substr(i * r_size, (i + 1) * r_size).c_str(), r_size);
-            file << total_blocks_char << i;
+            file << '\0' << total_blocks_char << i;
         }
         
         return total_blocks;

@@ -70,6 +70,6 @@ TEST_CASE("Reader", "[fsm]")
     printf("Test is completed, you might want to kill the Terminal.");
 }
 
-int test() {
-    return 0;
-}
+// TODO:
+// + Multiple write
+// + fsm_record: next, prev, substr

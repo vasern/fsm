@@ -12,7 +12,7 @@
 namespace vs_config {
     
     const static int BLOCK_SIZE = 1024;
-    const static int META_SIZE = 2;
+    const static int META_SIZE = 3;
     const static int RECORD_SIZE = BLOCK_SIZE - META_SIZE;
     
     static const char* INDEX_EXT = ".vsi";

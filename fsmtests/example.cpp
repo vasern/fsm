@@ -8,7 +8,7 @@
 #include "../fsm/fsm.h"
 
 size_t repeat = 1000000;
-std::string str = "After a month in production, I recently finished un-breaking a process I rewrote from scratch for my company. Despite painstaking efforts to replicate the production environment elsewhere, we couldn't reproduce it in any environment but production. At wits' end, I finally got approval to run production data through the system on my development workstation. Lo and behold, the same symptoms manifested plain as day. I profiled the application and traced the CPU load to an XSL transformation.";
+std::string str = "After a month in production, I recently finished un-breaking a process I rewrote from scratch for my company. Despite painstaking efforts to replicate the production environment elsewhere, we couldn't reproduce it in any environment but production. At wits' end, I finally got approval to run production data through the system on my development workstation. Lo and behold, the same symptoms manifested plain as day. I profiled the application and traced the CPU load to an XSL abcdefaslkdfjalskj laskjdf laskjdf lkjas";
 void write(vs::fsm_writer *writer)
 {
 
@@ -43,8 +43,7 @@ void read(vs::fsm_reader *reader)
         char* buff;
         while (i < repeat)
         {
-            reader->get_record(i).c_str(buff);
-            i++;
+            i += reader->get_record(i).c_str(buff);
         }
         printf("Read %zu records!\n", repeat);
         printf("Last record content: %s\n", buff);
@@ -59,7 +58,7 @@ void read(vs::fsm_reader *reader)
 int main(int argc, const char *argv[])
 {
 
-    vs::fsm fsm("./sample_db.bin", 1024);
+    vs::fsm fsm("./sample_db.bin", 495);
 
     if (argc > 1)
     {
