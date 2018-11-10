@@ -114,7 +114,7 @@ vs::fsm db("./fsm_data.bin");
 
 ### Quick example
 ```c++
-vs::fsm_writer* writer = db->open_writer();
+vs::fsm_writer* writer = db.open_writer();
 
 std::string r = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
 std::string buff;
@@ -170,7 +170,7 @@ In practice, each record will have different number of blocks depend on the reco
 ### Quick example
 
 ```c++
-vs::fsm_reader* reader = db->open_reader();
+vs::fsm_reader* reader = db.open_reader();
 std::string r = std::string(reader->write_record(0)); // read first record
 reader->close_conn();
 ```
