@@ -5,10 +5,10 @@
 //  (Please find "LICENSE" file attached for license details)
 //============================================================= */
 
-#include "../fsm/core/fsm.h"
+#include "../fsm/fsm.h"
 
 size_t repeat = 1000000;
-std::string str = "After a month in production, I recently finished un-breaking a process I rewrote from scratch for my company";
+std::string str = "After a month in production, I recently finished un-breaking a process I rewrote from scratch for my company. Despite painstaking efforts to replicate the production environment elsewhere, we couldn't reproduce it in any environment but production. At wits' end, I finally got approval to run production data through the system on my development workstation. Lo and behold, the same symptoms manifested plain as day. I profiled the application and traced the CPU load to an XSL transformation.";
 void write(vs::fsm_writer *writer)
 {
 

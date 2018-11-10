@@ -8,7 +8,7 @@
 #define CATCH_CONFIG_MAIN
 
 #include "catch.hpp"
-#include "../fsm/core/fsm.h"
+#include "../fsm/fsm.h"
 #include <string>
 
 // Create a file path (~/Documents/fsm.bin)
@@ -53,11 +53,12 @@ TEST_CASE("Reader", "[fsm]")
 
     SECTION("Single, sequential read")
     {
-        std::string record(reader->get_record(0).c_str());
-        
-        // Since reader record added a null char (\0)
-        // the size will increase by 1
-        REQUIRE( record.length() == line.length() + 1);
+        char* buff;
+        reader->get_record(0).c_str(buff);
+        std::string record(buff);
+
+        // Compare length
+        REQUIRE( record.length() == line.length());
     }
 
     SECTION("Close")

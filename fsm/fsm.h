@@ -8,10 +8,10 @@
 #ifndef fsm_h
 #define fsm_h
 
-#include "../config.h"
-#include "fsm_record.h"
-#include "fsm_reader.h"
-#include "fsm_writer.h"
+#include "config.h"
+#include "core/fsm_record.h"
+#include "core/fsm_reader.h"
+#include "core/fsm_writer.h"
 
 namespace vs {
     

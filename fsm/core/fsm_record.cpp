@@ -39,7 +39,7 @@ namespace vs {
             beg_pos += vs_config::BLOCK_SIZE;
         }
         
-        buff[++buff_pos] = '\0';
+        buff[buff_pos] = '\0';
     }
     
     fsm_record fsm_record::next() {
