@@ -8,7 +8,7 @@ FSM is developed as the [Vasern](https://github.com/vasern/vasern) storage engin
 
 Table of contents:
 
-- [Current Status](#current-status)
+- [Development Status](#development-status)
 - [Performance](#performance)
 - [Installation](#installation)
 - [Example Code](#example-code)
@@ -17,13 +17,21 @@ Table of contents:
 - [Contribute](#contribute)
 ---
 
-## Current Status
+## Development Status
 
 FSM is in development mode and is not production ready. A few APIs might need updated.
 
+You can try FSM with [Make](https://en.wikipedia.org/wiki/Make_(software)) scripts including:
+- `example`: compile the `example.cpp` file. Run `./example {command} {repeat}`
+    - command: `run_write` to write records, or `run_read` to read records.
+    - repeat(optional, default 1,000,000): number of records will be write/read
+- `tests`: compile and run tests
+- `cleanup`: remove all example, tests and data file generated.
+
 ## Performance
 
-Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM on a 250GB Flash Storage. The results will give you an idea about FSM performance. You can find the source code at `fsmtests/example.cpp`.
+Results are conducted in a Macbook Pro 2014, 2.6 GHz i5, 8GB RAM, and with a 250GB Flash Storage. 
+Each tests will be run 3 times. The results will give you an idea about FSM performance. You can find the source code at `fsmtests/example.cpp`.
 
 ### Write
 
@@ -84,7 +92,7 @@ writer->close_conn();
 # APIs
 
 Before you start, don't forget to (include FSM header file)[#installation].
-_Note: FSM has the namespace __`vs::`__ (short for Vasern).
+FSM uses namespace __`vs::`__ (short for Vasern).
 
 ## Start a FSM Instance
 
