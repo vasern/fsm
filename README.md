@@ -91,8 +91,8 @@ writer->close_conn();
 
 # APIs
 
-Before you start, don't forget to (include FSM header file)[#installation].
-FSM uses namespace __`vs::`__ (short for Vasern).
+Before you start, don't forget to [include FSM header file](#installation).
+Note that FSM classes use namespace __`vs::`__ (short for Vasern).
 
 ## Start a FSM Instance
 
@@ -155,14 +155,17 @@ vs::fsm_writer::close_conn();
 
 ## 2.Reading data
 
-You can load data using its block position. A block position is the order of the block in the structured
-data file. Note that end of each block is its `meta data` (2 chars).
+You can load data using its block position. A block position is the order of the block in the structured data file. _End of each block contains 2 chars `meta data`. One is the total number of blocks the record consume(1-9), and the other is its distance counting from the first block(0-8)._
 
-For example, let's have a `fsm` instance with block size is 1024:
-- If each record size is less than 1022, 1st block_position = 0, 2nd block_position = 1, etc.
-- Or if each record size is more than 1022, 1st block_position = 0, 2nd block_position = 2, etc.
+For example, let's have a `fsm` instance with the block size is 1024:
+- If each record size is less than 1022
+    - 1st block_position is 0
+    - 2nd block_position is 1
+- Or if each record size is more than 1022
+    - 1st block_position is 0
+    - 2nd block_position is 2
 
-In practice, each record will have different number of blocks depend on data size.
+In practice, each record will have different number of blocks depend on the record size.
 
 ### Quick example
 
