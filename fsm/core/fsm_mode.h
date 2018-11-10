@@ -39,7 +39,7 @@ namespace vs {
         int b_size;
         int r_size;
 
-        size_t fsm_mode::file_size() {
+        size_t file_size() {
             struct stat st;
             fstat(*path, &st);
             return st.st_size;

@@ -58,8 +58,4 @@ namespace vs {
         }
     }
     
-    size_t fsm_reader::file_size() {
-        return file_info.st_size;
-    }
-    
 } // namespace vs
