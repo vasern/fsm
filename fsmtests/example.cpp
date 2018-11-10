@@ -59,7 +59,7 @@ void read(vs::fsm_reader *reader)
 int main(int argc, const char *argv[])
 {
 
-    vs::fsm fsm("./sample_db.bin");
+    vs::fsm fsm("./sample_db.bin", 1024);
 
     if (argc > 1)
     {

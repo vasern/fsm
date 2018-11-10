@@ -19,7 +19,7 @@ namespace vs {
     public:
         
         // Initiate writer with absolute path and record block size
-        fsm(const char* path);
+        fsm(const char* path, int block_size);
         ~fsm();
         
         fsm_reader* open_reader();
@@ -31,6 +31,7 @@ namespace vs {
         const char* path;
         
         bool is_writing;
+        int b_size;
     };
 }
 

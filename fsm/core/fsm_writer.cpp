@@ -12,8 +12,8 @@
 namespace vs {
     
     // Constructor
-    fsm_writer::fsm_writer(const char * path):
-        fsm_mode(path)
+    fsm_writer::fsm_writer(const char * path, int b_size) :
+        fsm_mode(path, b_size)
     {
         if (strlen(path) != 0) {
             file.open(path, std::ios::binary | std::ios::app);
@@ -40,8 +40,8 @@ namespace vs {
         buffer->assign(data);
         
         // Calculate number of blocks needed
-        int total_blocks = (int)(data_size / vs_config::BLOCK_SIZE);
-        if (data_size % vs_config::BLOCK_SIZE != 0) {
+        int total_blocks = (int)(data_size / b_size);
+        if (data_size % b_size != 0) {
             total_blocks++;
         }
         
@@ -52,7 +52,7 @@ namespace vs {
         // Split data into blocks and write to data file
         // (with meta data in each block)
         for (int i = 0; i < total_blocks; i++) {
-            file.write(buffer->substr(i * vs_config::RECORD_SIZE, (i + 1) * vs_config::RECORD_SIZE).c_str(), vs_config::RECORD_SIZE);
+            file.write(buffer->substr(i * r_size, (i + 1) * r_size).c_str(), r_size);
             file << total_blocks_char << i;
         }
         

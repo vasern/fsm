@@ -9,6 +9,7 @@
 #define fsm_mode_h
 
 #include "fsm_record.h"
+#include "../config.h"
 #include <string>
 
 namespace vs {
@@ -18,8 +19,10 @@ namespace vs {
         
         bool opened;
         
-        fsm_mode(const char* path): 
-            path(path)
+        fsm_mode(const char* path, int block_size): 
+            path(path),
+            b_size(block_size),
+            r_size(block_size - vs_config::META_SIZE)
         { }
         
         void close_conn();
@@ -32,6 +35,8 @@ namespace vs {
 
     protected:
         const char* path;
+        int b_size;
+        int r_size;
     };
 }
 

@@ -17,7 +17,7 @@ namespace vs {
     class fsm_reader : public fsm_mode {
     public:
         
-        fsm_reader(const char* path);
+        fsm_reader(const char* path, int block_size);
         ~fsm_reader();
         
         // Get record in the from a given block position (file must be already open)

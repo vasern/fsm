@@ -97,11 +97,12 @@ Note that FSM classes use namespace __`vs::`__ (short for Vasern).
 ## Start a FSM Instance
 
 ```c++
-vs::fsm::fsm(const char* path);
+vs::fsm::fsm(const char* path, int block_size);
 ```
 
 #### Arguments
 - path: file path
+- block_size: a data block size, a record will consume multiple blocks if a record size > block size
 
 #### Example:
 ```c++

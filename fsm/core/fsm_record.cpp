@@ -11,17 +11,18 @@
 
 namespace vs {
   
-    fsm_record::fsm_record(char* map_add, size_t begin_pos): 
+    fsm_record::fsm_record(char* map_add, size_t begin_pos, int block_size, int record_size): 
         map(map_add), 
-        beg(begin_pos)
+        beg(begin_pos),
+        b_size(block_size),
+        r_size(record_size)
     { };
     
     void fsm_record::c_str(char* buff) {
 
         // buffer with max size = block size (except meta) * number of blocks
-        int num_of_blocks = map[beg + vs_config::RECORD_SIZE] & 0xff;
+        int num_of_blocks = map[beg + r_size] & 0xff;
         
-        // buff = new char[vs_config::RECORD_SIZE * num_of_blocks];
         int r = 0, b = 0; // row & block iterator
         size_t buff_pos = 0;
         size_t beg_pos = beg;
@@ -36,7 +37,7 @@ namespace vs {
                 buff[buff_pos++] = map[beg_pos + r];
                 r++;
             }
-            beg_pos += vs_config::BLOCK_SIZE;
+            beg_pos += b_size;
         }
         
         buff[buff_pos] = '\0';
@@ -45,15 +46,15 @@ namespace vs {
     fsm_record fsm_record::next() {
         
         size_t next_block_beg = beg +
-        ((map[beg + vs_config::RECORD_SIZE] & 0xff) * vs_config::BLOCK_SIZE) + 1;
+        ((map[beg + r_size] & 0xff) * b_size) + 1;
         
-        return fsm_record(map, next_block_beg);
+        return fsm_record(map, next_block_beg, b_size, r_size);
     }
     
     fsm_record fsm_record::prev() {
         size_t last_block_beg = beg -
-        (map[beg - 1] & 0xff * vs_config::BLOCK_SIZE);
-        return fsm_record(map, last_block_beg);
+        (map[beg - 1] & 0xff * b_size);
+        return fsm_record(map, last_block_beg, b_size, r_size);
     }
     
     const char* fsm_record::substr(int len) {

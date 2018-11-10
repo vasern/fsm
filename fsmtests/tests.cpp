@@ -18,7 +18,7 @@ const size_t repeat = 10;
 //NSString* path = [NSString stringWithFormat:@"%@/fsm.bin", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]];
 std::string line = "Because you say fileIn is an fstream object that is static and declared and instantiated in another method that is located in the same class I guess it is a pointer, really.";
 
-vs::fsm fsm("./dump.bin");
+vs::fsm fsm("./dump.bin", 1024);
 
 TEST_CASE("Writer", "[fsm]")
 {

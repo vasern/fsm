@@ -15,7 +15,7 @@ namespace vs {
     class fsm_record {
     public:
         
-        fsm_record(char* map_add, size_t begin_pos);
+        fsm_record(char* map_add, size_t begin_pos, int block_size, int record_size);
         
         void c_str(char* buff);
         
@@ -31,6 +31,8 @@ namespace vs {
         
         char* map;
         const size_t beg;
+        int b_size;
+        int r_size;
     };
 }
 

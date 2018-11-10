@@ -14,7 +14,7 @@
 
 namespace vs {
     
-    fsm_reader::fsm_reader(const char* path) : fsm_mode(path)
+    fsm_reader::fsm_reader(const char* path, int block_size) : fsm_mode(path, block_size)
     {
         
         fd = open(path, O_RDONLY, (mode_t)0600);
@@ -46,7 +46,7 @@ namespace vs {
     }
     
     fsm_record fsm_reader::get_record(int block_pos) {
-        return fsm_record(map, block_pos * vs_config::BLOCK_SIZE);
+        return fsm_record(map, block_pos * b_size, b_size, r_size);
     }
     
     // Un-map and close file
