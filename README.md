@@ -59,7 +59,7 @@ Measure performance of reading 1 billions records with block size is 1024 (~a 1G
 The easiest way is to download fsm, then copy and include into your project using:
 
 ```c++
-#include "fsm/core/fsm.h"
+#include "fsm/fsm.h"
 ```
 
 ## Example Code
