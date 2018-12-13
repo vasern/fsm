@@ -35,7 +35,7 @@ Each tests will be run 3 times. The results will give you an idea about FSM perf
 
 ### Write
 
-Measure performance of writing 10 billions records with block size is 1024 (generate a 10GB data file).
+Measure performance of writing 10 millions records with block size is 1024 (generate a 10GB data file).
 
 | (real)  | (user) | (sys)   | writes/s      | MB/s     |
 | ------- | ------ | ------- | ------------- | -------- |
@@ -45,7 +45,7 @@ Measure performance of writing 10 billions records with block size is 1024 (gene
 
 ### Read
 
-Measure performance of reading 1 billions records with block size is 1024 (~a 1GB data file).
+Measure performance of reading 1 million records with block size is 1024 (~a 1GB data file).
 
 | (real) | (user) | (sys)  | reads/s       | MB/s     |
 | ------ | ------ | ------ | ------------- | -------- |
