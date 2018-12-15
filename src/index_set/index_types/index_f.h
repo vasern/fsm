@@ -9,13 +9,11 @@
 #ifndef index_f_h
 #define index_f_h
 
-#include "../../../enums.h"
+#include "../../enums.h"
 
 #include "index_str.h"
-#include "index_int.h"
+#include "index_number.h"
 #include "index_bool.h"
-#include "index_long.h"
-#include "index_double.h"
 
 namespace vs {
     
@@ -30,14 +28,8 @@ namespace vs {
                 case KEY:
                     t = new index_str();
                     break;
-                case INT_N:
-                    t = new index_int();
-                    break;
-                case LONG_N:
-                    t = new index_long();
-                    break;
-                case DOUBLE_N:
-                    t = new index_double();
+                case NUMBER:
+                    t = new index_number();
                     break;
                 case BOOLEAN:
                     t = new index_bool();

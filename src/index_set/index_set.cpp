@@ -8,7 +8,7 @@
 
 #include "index_set.inl"
 #include "index_types/index_f.h"
-#include "index_set_types.h"
+
 #include <algorithm>
 
 namespace vs {
@@ -153,7 +153,7 @@ namespace vs {
     };
     
     template <typename T>
-    prop_desc_t index_set<T>::type_of(const char* name) {
+    type_desc_t index_set<T>::type_of(const char* name) {
         return _set[name]->type();
     }
 }

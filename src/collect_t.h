@@ -6,7 +6,6 @@
 
 #include "index_set/query_t.h"
 #include "index_set/index_set.h"
-//#include "index_set/index_set_types.h"
 #include "types.h"
 
 #include <string>
@@ -36,10 +35,10 @@ namespace vs {
         
         size_t count(upair_t*);
         
-        void startup();
-        
         type_desc_t type_of(const char*);
         const char* get_id(upair_t*);
+        
+        void startup();
         
     private:
         

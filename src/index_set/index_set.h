@@ -13,11 +13,8 @@
 #include <unordered_map>
 
 #include "index_types/index_t.h"
-#include "../index_set_types.h"
-//#include "value_i.h"
 
 namespace vs {
-//    typedef std::shared_ptr<value_i<size_t>> value_ptr;
     
     template<typename T>
     class index_set {
