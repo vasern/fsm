@@ -100,8 +100,7 @@ namespace vs
     void block_writer::write(std::ofstream* writer) {
         
         build_meta();
-        
-        writer->write(buff, b_size);
+        writer->write(buff, b_size * total_blocks);
         clear();
     }
     
@@ -133,11 +132,18 @@ namespace vs
         
         total_blocks++;
         
-        char new_buff[b_size * total_blocks];
-        std::memcpy(&new_buff[0], &buff[0], pos);
-        
-        delete[] buff;
-        buff = new_buff;
+//        char new_buff[b_size * total_blocks];
+//        std::memcpy(&new_buff[0], &buff[0], pos);
+//
+//        delete[] buff;
+//        buff = new_buff;
+        void *temp = realloc( buff, b_size * total_blocks);
+        // If the function fails to allocate the requested block of memory,
+        // a null pointer is returned,
+        // and the memory block pointed to by argument ptr is not deallocated
+        if ( temp != NULL ) {
+            buff = (char*)temp;
+        }
     }
     
     int block_writer::num_of_blocks() {

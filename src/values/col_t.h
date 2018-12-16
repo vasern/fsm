@@ -23,8 +23,8 @@ namespace vs {
         int position;
         bool is_key;
         
-        col_t(const char* _name, type_desc_t _type);
-        col_t(const char* _name, type_desc_t _type, int _size);
+        col_t(std::string _name, type_desc_t _type);
+        col_t(std::string _name, type_desc_t _type, int _size);
         
         void set_position(int value);
         void set_represent(int value);

@@ -41,6 +41,7 @@ namespace vs {
         int size();
         int end();
         size_t key_size();
+        int block_end();
         
         schema_t keys;
         descript_t descript;

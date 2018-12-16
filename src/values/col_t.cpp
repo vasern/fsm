@@ -10,7 +10,8 @@
 #include "../io/block_config.h"
 
 namespace vs {
-    col_t::col_t(const char* _name, type_desc_t _type)
+    
+    col_t::col_t(std::string _name, type_desc_t _type)
     : name(_name)
     , type(_type)
     , represent(0)
@@ -33,7 +34,7 @@ namespace vs {
         }
     }
     
-    col_t::col_t(const char* _name, type_desc_t _type, int _size)
+    col_t::col_t(std::string _name, type_desc_t _type, int _size)
     : name(_name)
     , type(_type)
     , size(_size)

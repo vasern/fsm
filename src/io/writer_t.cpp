@@ -7,9 +7,7 @@ namespace vs {
     : path(_path)
     , layout(_layout)
     , buff(block_writer(_layout->size()))
-    {
-        
-    }
+    {}
     
     void writer_t::open_conn() {
         file.open(path.c_str(), std::ios::binary | std::ios::app);
@@ -44,7 +42,7 @@ namespace vs {
         std::vector<std::string> remove_keys;
         for (auto itr: *record) {
             if (layout->descript.count(itr.first) == 0) {
-                buff.append(itr.second->type);
+                buff.append((int)itr.second->type);
                 buff.append((int)itr.first.size());
                 buff.append(itr.first.c_str(), (int)itr.first.size());
                 itr.second->assign(&buff);

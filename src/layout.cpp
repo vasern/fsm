@@ -103,4 +103,7 @@ namespace vs {
     size_t layout_t::key_size() {
         return keys.size();
     }
+    int layout_t::block_end() {
+        return b_end;
+    }
 }

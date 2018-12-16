@@ -59,20 +59,26 @@ namespace vs {
     
     // Load then return all properties and values
     upair_t block_reader::object() {
-        upair_t rs;
+        upair_t rs = tags();
         
-        size_t pos = begin + MT_BLOCK_START;
+        size_t pos = begin + layout->block_end();
         int total_props = fmap[begin + MT_TOTAL_PROPS] & 0xff;
-        int i = 0, type;
+        int i = (int)rs.size(), type, size;
         ulist_t props;
         type_desc_t ptype;
-        std::string prop;
+        char* prop;
         
         while (i++ < total_props) {
-            
-            prop = layout->name_of((int)fmap[pos] & 0xff);
-            ptype = layout->type_of(prop);
+            type = fmap[pos] & 0xf;
             pos += TYPE_SIZE;
+            
+            size = fmap[pos] & 0xf;
+            pos += TYPE_SIZE;
+            
+            ptype = static_cast<type_desc_t>(type);
+            prop = new char[size];
+            block_helper::read_str(pos, size, fmap, prop);
+            pos += size;
             
             switch (ptype) {
                     
@@ -97,20 +103,20 @@ namespace vs {
                 case OBJECT: {
                     
                     upair_t ob;
-                    type = (int)(fmap[pos] & 0xff);
+                    size = (int)(fmap[pos] & 0xff);
                     pos += TYPE_SIZE;
                     
-                    block_helper::read_obj(&ob, &pos, type, fmap);
+                    block_helper::read_obj(&ob, &pos, size, fmap);
                     rs[prop] = value_f::create(ob);
                     break;
                 }
                 case LIST: {
                     
                     ulist_t list;
-                    type = (int)(fmap[pos] & 0xff);
+                    size = (int)(fmap[pos] & 0xff);
                     pos += TYPE_SIZE;
                     
-                    block_helper::read_list(&list, &pos, type, fmap);
+                    block_helper::read_list(&list, &pos, size, fmap);
                     rs[prop] = value_f::create(list);
                     
                     break;
@@ -118,6 +124,9 @@ namespace vs {
                 default:
                     break;
             }
+            
+            
+            delete[] prop;
         }
         
         return rs;
