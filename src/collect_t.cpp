@@ -26,7 +26,8 @@ namespace vs {
     
     void collect_t::insert(upair_t* row) {
         writer->build(row);
-        writer->write();
+        size_t pos = writer->write();
+        indexes.push(value_ptr(new value_i<size_t>{ pos, *row }));
     }
 
     void collect_t::remove(std::vector<const char*> key) {
@@ -104,6 +105,7 @@ namespace vs {
             value_ptr index_value;
             while ( r.is_valid() ) {
                 
+                index_value = value_ptr(new value_i<size_t>{ pos, r.tags() });
                 indexes.push(index_value);
                 
                 pos += r.total_blocks();
@@ -115,7 +117,7 @@ namespace vs {
     }
     
     void collect_t::init_index() {
-        std::unordered_map<std::string, type_desc_t> schema = {{ "id", KEY }};
+        std::unordered_map<std::string, type_desc_t> schema;
         for (auto itr : layout.keys) {
             schema.insert({ itr.name, itr.type });
         }

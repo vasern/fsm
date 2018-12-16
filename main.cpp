@@ -13,7 +13,7 @@ int main(int count, char* args[]) {
     }, 1024);
     
     vs::upair_t record({
-        {"id", vs::value_f::create("random_key_num")},
+        {"id", vs::value_f::create("random_key_num_2")},
         {"firstName", vs::value_f::create("Johnathan")},
         {"lastName", vs::value_f::create("Smith")},
         {"yob", vs::value_f::create(1987)},
@@ -35,15 +35,19 @@ int main(int count, char* args[]) {
     
     
     
-    vs::collect_t db("./db.bin", "db", sc);
-    db.open_writer();
+    vs::collect_t db(".", "db", sc, true);
+//    db.open_writer();
     
     // Perform Single Write
-    db.insert(&record);
+//    db.insert(&record);
+    
+//    db.close_writer();
     
     // Perform Filter
-    vs::upair_t query = {{ "id", vs::value_f::create("random_key_num") }};
+    vs::upair_t query = {{ "id", vs::value_f::create("random_key_num_2") }};
     std::vector<vs::block_reader*> results = db.filter(&query);
+    
+    
     
     return 0;
 }

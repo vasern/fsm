@@ -33,28 +33,36 @@ namespace vs {
     }
     
     void writer_t::build(upair_t* record) {
-
+        
         buff.set_total_props((int)record->size());
 
         for (auto itr: layout->keys) {
             buff.append(itr.represent);
             (*record)[itr.name]->assign(&buff, itr.size);
         };
-
+        
+        std::vector<std::string> remove_keys;
         for (auto itr: *record) {
             if (layout->descript.count(itr.first) == 0) {
                 buff.append(itr.second->type);
                 buff.append((int)itr.first.size());
                 buff.append(itr.first.c_str(), (int)itr.first.size());
                 itr.second->assign(&buff);
+//                record->erase(itr.first);
+                remove_keys.push_back(itr.first);
             }
         }
         
-        last_block_pos += buff.num_of_blocks();
+        for (std::string key: remove_keys) {
+            record->erase(key);
+        }
     }
 
-    void writer_t::write() {
+    size_t writer_t::write() {
+        size_t pos = last_block_pos;
+        last_block_pos += buff.num_of_blocks();
         buff.write(&file);
+        return pos;
     }
     
 //    block_writer writer_t::build(upair_t record) {

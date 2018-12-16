@@ -27,7 +27,7 @@ namespace vs {
         void close_conn();
         
         void build(upair_t* record);
-        void write();
+        size_t write();
         
     private:
         
